@@ -66,7 +66,10 @@ local abs_regex, abs_regex_flags = compile_regex([=[
     (?:
       :(\d+) # port (5)
     )?
-    (.*) # path (6)
+    ([^?]*) # path (6)
+    (?:
+      ?(.*) # query (7)
+    )?
   $
 ]=])
 local http_regex, http_regex_flags = compile_regex('^https?$')
@@ -133,6 +136,7 @@ function _M.parse(url, protocol)
     host = parts[4] or nil,
     port = tonumber(parts[5]),
     path = parts[6] or nil,
+    qeury = parts[7] or nil,
     opaque = parts.opaque,
   }, { __tostring = function() return url end })
 end

@@ -141,6 +141,23 @@ describe('resty.url', function()
       local uri = 'data:' .. opaque
       assert.same({ scheme = 'data', opaque = opaque }, parse(uri))
     end)
+
+    it('works with @ in path', function()
+      local path = '/6d22649112c442388502ce8a31484b4f_1800w_1200h.jpg@2o_50sh_1pr_1l_150w_90h_1c_1e_90q_1wh'
+      local uri = 'http://i5.chuimg.com' .. path
+      local parsed = parse(uri)
+      -- TODO it might be encoded
+      assert.equal(path, parsed.path)
+    end)
+
+    it('captures query', function()
+      local query = 'a=1&b=2'
+      local uri = 'http://example.com/some/path?' .. query
+      local parsed = parse(uri)
+      -- TODO it might be encoded
+      assert.equal(query, parsed.query)
+    end)
+
   end)
 
   describe('.join', function()
