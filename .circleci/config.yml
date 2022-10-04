@@ -21,7 +21,7 @@ jobs:
         -e 'package.path=\"/opt/app-root/lua-resty-url/./lua_modules/share/lua/5.1/?.lua;/opt/app-root/lua-resty-url/./lua_modules/share/lua/5.1/?/init.lua;\"..package.path'
         -e 'package.cpath=\"/opt/app-root/lua-resty-url/./lua_modules/lib/lua/5.1/?.so;\"..package.cpath'
         -e 'local k,l,_=pcall(require,\"luarocks.loader\") _=k and l.add_context(\"busted\",\"2.0.rc12-1\")'
-        /opt/app-root/lua-resty-url/./lua_modules/luarocks/rocks/busted/2.0.rc12-1/bin/busted"
+        '/opt/app-root/lua-resty-url/./lua_modules/luarocks/rocks/busted/2.0.rc12-1/bin/busted'"
       #- run: ./lua_modules/bin/busted
       - store_artifacts:
           path: tmp
