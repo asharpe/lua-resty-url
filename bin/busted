@@ -1,13 +1,13 @@
 #!/usr/bin/env resty
 
-# from lua_modules/bin/busted
+-- from lua_modules/bin/busted
 package.path="/opt/app-root/lua-resty-url/./lua_modules/share/lua/5.1/?.lua;/opt/app-root/lua-resty-url/./lua_modules/share/lua/5.1/?/init.lua;"..package.path
 package.cpath="/opt/app-root/lua-resty-url/./lua_modules/lib/lua/5.1/?.so;"..package.cpath
 
-# from https://github.com/kubernetes/ingress-nginx/pull/4313/files#diff-ac74e05b75d227285b6d9a15b0cfa7837d4bb078b273bafaaed899ad2e0b6509R8
+-- from https://github.com/kubernetes/ingress-nginx/pull/4313/files#diff-ac74e05b75d227285b6d9a15b0cfa7837d4bb078b273bafaaed899ad2e0b6509R8
 setmetatable(_G, { __newindex = function(table, key, value) rawset(table, key, value) end })
 
-# from lua_modules/bin/busted
+-- from lua_modules/bin/busted
 local k,l,_=pcall(require,"luarocks.loader")
 _=k and l.add_context("busted",os.getenv('busted_version')
 
@@ -15,6 +15,6 @@ if ngx ~= nil then
   ngx.exit = function()end
 end
 
-# from lua_modules/luarocks/rocks/busted/$busted_version/bin/busted
+-- from lua_modules/luarocks/rocks/busted/$busted_version/bin/busted
 require 'busted.runner'({ standalone = false })
 
