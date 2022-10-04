@@ -1,6 +1,8 @@
 version: 2
 jobs:
   build:
+    environment:
+      busted_version: 2.1.1-1
     docker:
       - image: quay.io/3scale/s2i-openresty-centos7:master
     working_directory: /opt/app-root/lua-resty-url
@@ -11,18 +13,19 @@ jobs:
             - resty-url-rover-{{ arch }}-{{ checksum ".circleci/config.yml" }}
             - resty-url-rover-{{ arch }}-{{ .Branch }}
             - resty-url-rover-{{ arch }}-master
-      - run: mkdir -p tmp/junit; luarocks~ install --tree=$(pwd)/lua_modules busted 2.1.1-1
+      - run: mkdir -p tmp/junit; luarocks~ install --tree=$(pwd)/lua_modules busted $busted_version
       - save_cache:
           key: resty-url-rover-{{ arch }}-{{ checksum ".circleci/config.yml" }}
           paths:
             - lua_modules
-      - run: "/usr/local/openresty/bin/resty
-        -e 'setmetatable(_G, { __newindex = function(table, key, value) rawset(table, key, value) end })'
-        -e 'package.path=\"/opt/app-root/lua-resty-url/./lua_modules/share/lua/5.1/?.lua;/opt/app-root/lua-resty-url/./lua_modules/share/lua/5.1/?/init.lua;\"..package.path'
-        -e 'package.cpath=\"/opt/app-root/lua-resty-url/./lua_modules/lib/lua/5.1/?.so;\"..package.cpath'
-        -e 'local k,l,_=pcall(require,\"luarocks.loader\") _=k and l.add_context(\"busted\",\"2.1.1-1\")'
-        '/opt/app-root/lua-resty-url/./lua_modules/luarocks/rocks/busted/2.1.1-1/bin/busted'"
+#      - run: "/usr/local/openresty/bin/resty
+#        -e 'setmetatable(_G, { __newindex = function(table, key, value) rawset(table, key, value) end })'
+#        -e 'package.path=\"/opt/app-root/lua-resty-url/./lua_modules/share/lua/5.1/?.lua;/opt/app-root/lua-resty-url/./lua_modules/share/lua/5.1/?/init.lua;\"..package.path'
+#        -e 'package.cpath=\"/opt/app-root/lua-resty-url/./lua_modules/lib/lua/5.1/?.so;\"..package.cpath'
+#        -e 'local k,l,_=pcall(require,\"luarocks.loader\") _=k and l.add_context(\"busted\",\"$busted_version")'
+#        '/opt/app-root/lua-resty-url/./lua_modules/luarocks/rocks/busted/$busted_version/bin/busted'"
       #- run: ./lua_modules/bin/busted
+      - run: ./bin/busted
       - store_artifacts:
           path: tmp
           destination: tmp
