@@ -4,6 +4,8 @@ if ngx ~= nil then
   ngx.exit = function()end
 end
 
+setmetatable(_G, { __newindex = function(table, key, value) rawset(table, key, value) end })
+
 -- Busted command-line runner
 require 'busted.runner'({ standalone = false })
 
