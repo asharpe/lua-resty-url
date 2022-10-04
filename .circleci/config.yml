@@ -11,7 +11,7 @@ jobs:
             - resty-url-rover-{{ arch }}-{{ checksum "Roverfile.lock" }}
             - resty-url-rover-{{ arch }}-{{ .Branch }}
             - resty-url-rover-{{ arch }}-master
-      - run: mkdir -p tmp/junit; rover install
+      - run: mkdir -p tmp/junit; luarocks~ install --local busted
       - save_cache:
           key: resty-url-rover-{{ arch }}-{{ checksum "Roverfile.lock" }}
           paths:

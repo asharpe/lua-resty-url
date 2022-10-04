@@ -1,3 +1,6 @@
+-- see https://github.com/kubernetes/ingress-nginx/pull/4313/files#diff-3d8362de2ff5e9c575f8d65dc6de5effR1
+setmetatable(_G, { __newindex = function(table, key, value) rawset(table, key, value) end })
+
 local ci = os.getenv('CI')
 
 if ci then
