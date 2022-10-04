@@ -17,7 +17,7 @@ jobs:
           paths:
             - lua_modules
             - ../src/.luarocks
-      - run: ./bin/busted
+      - run: env; ./bin/busted
       #- run: ../src/.luarocks/bin/busted
       - store_artifacts:
           path: tmp
