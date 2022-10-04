@@ -17,8 +17,8 @@ jobs:
           paths:
             - lua_modules
             - ../src/.luarocks
+      - run: ../src/.luarocks/bin/busted 2>&1
       - run: id; ps ax; env; ./bin/busted
-      #- run: ../src/.luarocks/bin/busted
       - store_artifacts:
           path: tmp
           destination: tmp
