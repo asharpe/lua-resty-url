@@ -16,7 +16,7 @@ jobs:
           key: resty-url-rover-{{ arch }}-{{ checksum "Roverfile.lock" }}
           paths:
             - lua_modules
-      - run: ./lua_modules/bin/busted
+      - run: pwd; find; ./lua_modules/bin/busted
       - store_artifacts:
           path: tmp
           destination: tmp
