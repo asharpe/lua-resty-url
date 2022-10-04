@@ -1,3 +1,6 @@
+lua-resty-url [![CircleCI](https://circleci.com/gh/asharpe/lua-resty-url.svg?style=svg)](https://circleci.com/gh/asharpe/lua-resty-url/tree/master)
+===
+
 lua-resty-url [![CircleCI](https://dl.circleci.com/status-badge/img/gh/asharpe/lua-resty-url/tree/master.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/asharpe/lua-resty-url/tree/master)
 ===
 
