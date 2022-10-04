@@ -13,7 +13,7 @@ jobs:
             - resty-url-rover-{{ arch }}-master
       - run: mkdir -p tmp/junit; luarocks~ install --tree=$(pwd)/lua_modules busted
       - save_cache:
-          key: resty-url-rover-{{ arch }}-{{ checksum "Roverfile.lock" }}
+          key: resty-url-rover-{{ arch }}-{{ checksum ".circleci/config.yml" }}
           paths:
             - lua_modules
             - ../src/.luarocks
