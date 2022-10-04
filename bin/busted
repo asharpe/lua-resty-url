@@ -9,7 +9,7 @@ setmetatable(_G, { __newindex = function(table, key, value) rawset(table, key, v
 
 -- from lua_modules/bin/busted
 local k,l,_=pcall(require,"luarocks.loader")
-_=k and l.add_context("busted",os.getenv('busted_version')
+_=k and l.add_context("busted",os.getenv('busted_version'))
 
 if ngx ~= nil then
   ngx.exit = function()end
